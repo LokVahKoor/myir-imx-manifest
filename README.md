@@ -34,11 +34,11 @@ repo sync
 For MYiR i.MX BSP release:
 
 ```bash
-MACHINE=<machine> DISTRO=myir-imx-<backend> source ./myir-setup-release.sh -b build-<backend>
+DISTRO=fsl-imx-<backend> MACHINE=<machine> source ./myir-setup-release.sh -b build-lmx91-<backend>
 ```
 
 Available options:
-- `<machine>`: Your target machine (e.g., myimx8mm for MYiR i.MX8M Mini boards)
+- `<machine>`: Your target machine (e.g., myd-lmx91 for MYiR i.MX91 boards)
 - `<backend>`: Graphics backend type
   - xwayland: Wayland with X11 support (default)
   - wayland: Wayland only
@@ -46,7 +46,7 @@ Available options:
 
 Example for XWayland:
 ```bash
-DISTRO=fsl-imx-xwayland MACHINE=myd-lmx91 source ./myir-setup-release.sh -b build-lmx91
+DISTRO=fsl-imx-xwayland MACHINE=myd-lmx91 source ./myir-setup-release.sh -b build-lmx91-xwayland
 ```
 
 ## Building Image
