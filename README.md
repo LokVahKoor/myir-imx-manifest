@@ -1,96 +1,78 @@
-i.MX Repo Manifest README
-=========================
+# MYiR i.MX Yocto Project BSP Manifest README
 
-This repo is used to download manifests for i.MX BSP releases.
+This repository contains the manifest files for MYiR's i.MX-based BSP releases.
 
-Specific instructions reside in READMEs in each branch.
+## Prerequisites
 
-The branch name is based on the release type, Linux or Android, and the Yocto Project release name, with manifests in each branch tied to the base BSP release.
+### Install the `repo` utility
 
-For example, for i.MX Linux BSP releases based on Yocto Project `Scarthgap`, the branch is `imx-linux-scarthgap`.
+To use this manifest repository, you must first install the `repo` tool:
 
-Install the `repo` utility:
----------------------------
-
-To use this manifest repo, the `repo` tool must be installed first.
-
-```
-$: mkdir ~/bin
-$: curl http://commondatastorage.googleapis.com/git-repo-downloads/repo  > ~/bin/repo
-$: chmod a+x ~/bin/repo
-$: PATH=${PATH}:~/bin
+```bash
+mkdir ~/bin
+curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+chmod a+x ~/bin/repo
+export PATH=${PATH}:~/bin
 ```
 
-Install essential host packages
-------------------------------
-Your Build Host must install required packages for the Yocto build.
-Reference to the section "Build Host Packages" in the document "Yocto Project Quick build".
+### Install essential host packages
+
+Your build host must install required packages for Yocto builds. Please refer to the "Build Host Packages" section in the Yocto Project documentation:
 - https://docs.yoctoproject.org/5.0.3/brief-yoctoprojectqs/index.html#build-host-packages
 
-Download the Yocto Project BSP
-------------------------------
+## Download the BSP
 
-```
-$: mkdir <release>
-$: cd <release>
-$: repo init -u https://github.com/nxp-imx/imx-manifest -b <branch name> [ -m <release manifest>]
-$: repo sync
-```
-
-Each branch has detailed READMEs describing exact syntax.
-
-Examples
---------
-
-To download the 6.6.52-2.2.0 release
-```
-$: repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-scarthgap -m imx-6.6.52-2.2.0.xml
-```
-To download the 6.6.36-2.1.0 release
-```
-$: repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-scarthgap -m imx-6.6.36-2.1.0.xml
-```
-To download the 6.6.23-2.0.0 release
-```
-$: repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-scarthgap -m imx-6.6.23-2.0.0.xml
+```bash
+mkdir myir-lmx91-6.6.36
+cd myir-lmx91-6.6.36
+repo init -u https://github.com/MYiR-DEV/myir-lmx91-manifest -b scarthgap -m myir-6.6.36-1.0.0.xml
+repo sync
 ```
 
-Setup the build folder for a BSP release:
------------------------------------------
+## Setup the build environment
 
-Note: The remaining instructions are for setting up a BSP release only. For setting
-up a demo, please see `imx-manifest/README-<demo>` for further instructions.
+For MYiR i.MX BSP release:
 
-```
-$: [MACHINE=<machine>] [DISTRO=fsl-imx-<backend>] source ./imx-setup-release.sh -b bld-<backend>
-
-<machine>   defaults to `imx6qsabresd`
-<backend>   Graphics backend type
-    xwayland    Wayland with X11 support - default distro
-    wayland     Wayland
-    fb          Framebuffer (not supported for mx8)
+```bash
+MACHINE=<machine> DISTRO=myir-imx-<backend> source ./myir-setup-release.sh -b build-<backend>
 ```
 
-Note: If the poky community distro is used, then build breaks will happen with some
-components using our `meta-imx` layer.
+Available options:
+- `<machine>`: Your target machine (e.g., myimx8mm for MYiR i.MX8M Mini boards)
+- `<backend>`: Graphics backend type
+  - xwayland: Wayland with X11 support (default)
+  - wayland: Wayland only
+  - fb: Framebuffer
 
-Examples:
-- Setup for XWayland.
-```
-$: MACHINE=imx8mnevk DISTRO=fsl-imx-xwayland source ./imx-setup-release.sh -b bld-xwayland
-```
-
-Build an image:
----------------
-
-```
-$: bitbake <image recipe>
+Example for XWayland:
+```bash
+MACHINE=myimx8mm DISTRO=myir-imx-xwayland source ./myir-setup-release.sh -b build-xwayland
 ```
 
-Some image recipes:
+## Building Images
+
+After setting up the build environment, you can build images with:
+
+```bash
+bitbake <image-recipe>
+```
+
+### Available Image Recipes
 
 Image Name           | Description
 ---------------------|---------------------------------------------------
-imx-image-core       | core image with basic graphics and no multimedia
-imx-image-multimedia | image with multimedia and graphics
-imx-image-full       | image with multimedia and machine learning and Qt
+myir-image-core      | Core image with basic graphics support
+myir-image-multimedia | Image with multimedia and graphics support
+myir-image-full      | Complete image with multimedia, machine learning and Qt support
+
+## Documentation
+
+For more detailed information about MYiR i.MX products and BSP, please refer to:
+- [MYiR Official Website](https://www.myirtech.com)
+- [MYiR Documentation Center](https://www.myirtech.com/list.asp?id=516)
+
+## Support
+
+For technical support, please contact MYiR:
+- Email: support@myirtech.com
+- Forum: [MYiR Community](https://www.myirtech.com/list.asp?id=519)
