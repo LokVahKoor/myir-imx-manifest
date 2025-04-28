@@ -12,6 +12,7 @@
   <remote name="qt"          fetch="https://github.com/YoeDistro"/>
   <remote name="timesys"     fetch="https://github.com/TimesysGit"/>
 
+  <remote name="imx"         fetch="https://github.com/nxp-imx"/>
   <remote name="LokVahKoor"     fetch="https://github.com/LokVahKoor"/>
   <remote name="imx-support" fetch="https://github.com/nxp-imx-support"/>
 
