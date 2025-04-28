@@ -10,7 +10,7 @@ To use this manifest repository, you must first install the `repo` tool:
 
 ```bash
 mkdir ~/bin
-curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+curl https://mirrors.tuna.tsinghua.edu.cn/git/git-repo > ~/bin/repo
 chmod a+x ~/bin/repo
 export PATH=${PATH}:~/bin
 ```
@@ -25,7 +25,7 @@ Your build host must install required packages for Yocto builds. Please refer to
 ```bash
 mkdir myir-lmx91-6.6.36
 cd myir-lmx91-6.6.36
-repo init -u https://github.com/MYiR-DEV/myir-lmx91-manifest -b scarthgap -m myir-6.6.36-1.0.0.xml
+repo init -u https://github.com/LokVahKoor/myir-imx-manifest -b i.MX91-6.6.36-scarthgap -m myir-6.6.36-1.0.0.xml
 repo sync
 ```
 
@@ -46,10 +46,10 @@ Available options:
 
 Example for XWayland:
 ```bash
-MACHINE=myimx8mm DISTRO=myir-imx-xwayland source ./myir-setup-release.sh -b build-xwayland
+DISTRO=fsl-imx-xwayland MACHINE=myd-lmx91 source ./myir-setup-release.sh -b build-lmx91
 ```
 
-## Building Images
+## Building Image
 
 After setting up the build environment, you can build images with:
 
@@ -61,18 +61,15 @@ bitbake <image-recipe>
 
 Image Name           | Description
 ---------------------|---------------------------------------------------
-myir-image-core      | Core image with basic graphics support
-myir-image-multimedia | Image with multimedia and graphics support
 myir-image-full      | Complete image with multimedia, machine learning and Qt support
 
 ## Documentation
 
 For more detailed information about MYiR i.MX products and BSP, please refer to:
-- [MYiR Official Website](https://www.myirtech.com)
-- [MYiR Documentation Center](https://www.myirtech.com/list.asp?id=516)
+- [MYiR Official Website](https://www.myir.cn)
+- [MYiR Documentation Center](https://developer.myir.cn)
 
 ## Support
 
 For technical support, please contact MYiR:
 - Email: support@myirtech.com
-- Forum: [MYiR Community](https://www.myirtech.com/list.asp?id=519)
